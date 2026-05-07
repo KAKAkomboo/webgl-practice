@@ -239,3 +239,12 @@ const CONNECTIONS=[
  ['macragge','honourum',0.08],
 ];
 
+
+const bgCanvas=document.getElementById('bgCanvas');
+const mapCanvas=document.getElementById('mapCanvas');
+const scanLines=document.getElementById('scanLines');
+
+const gl=bgCanvas.getContext('webgl');
+const ctx=mapCanvas.getContext('2d');
+
+

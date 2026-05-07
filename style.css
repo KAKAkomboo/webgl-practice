@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cinzel:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+#bgCanvas {
+    z-index: 0;
+}
+
+#mapCanvas {
+    z-index: 1;
+    cursor: crosshair;
+}
+
+#mapCanvas.panning {
+    cursor: grabbing;
+}
+
+
+
+
+
+#titleBar{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  background:linear-gradient(180deg,rgba(0,6,4,0.97)0%,rgba(0,12,8,0.9)80%,transparent 100%);
+  padding:10px 20px 18px;
+  border-bottom:1px solid rgba(0,255,160,0.15);
+  text-align:center;pointer-events:none;
+}
+
+#titleText{
+  font-family:'Cinzel',serif;font-size:clamp(14px,2vw,22px);font-weight:900;
+  color:#00ffaa;letter-spacing:8px;text-transform:uppercase;
+  text-shadow:0 0 20px #00ffaa,0 0 40px rgba(0,255,170,0.4);
+}
+
+#titleSub{
+  font-size:9px;color:rgba(0,200,120,0.5);letter-spacing:4px;
+  margin-top:3px;text-transform:uppercase;
+}
+
+.title-flanks{display:inline-flex;align-items:center;gap:12px}
+
+.title-sep{color:rgba(0,255,160,0.3);font-size:16px}

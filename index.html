@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>IMPERIUM</title>
 </head>
 <body>
     <canvas id="bgCanvas"></canvas>
     <canvas id="mapCanvas"></canvas>
     <div id="scanLines"></div>
+    
+    <div id="titleBar">
+    <div class="title-flanks">
+        <span class="title-sep">◈</span>
+        <div>
+        <div id="titleText">Imperium Stellar Navigation Log</div>
+        <div id="titleSub">Adeptus Administratum &nbsp;•&nbsp; Classified Extremis &nbsp;•&nbsp; Year 999.M41 &nbsp;•&nbsp; Segmentum Archives</div>
+        </div>
+        <span class="title-sep">◈</span>
+    </div>
+    </div>
+    
+    
+    <div id="zoomCtrl">
+    <button class="zbtn" onclick="zoomAt(1.25)">+</button>
+    <button class="zbtn" onclick="zoomAt(0.8)">−</button>
+    <button class="zbtn small" onclick="resetView()">⌂</button>
+    </div>
+    
+    <div id="popup">
+    <div class="popup-corner tl"></div><div class="popup-corner br"></div>
+    <button id="popupClose" onclick="closePopup()">✕</button>
+    <canvas id="popupPlanetPreview" width="44" height="44"></canvas>
+    <div id="popupTitle">-</div>
+    <div id="popupChapter">-</div>
+    <div id="popupInfo">-</div>
+    <div id="popupBadge"></div>
+    <div id="popupSeg">-</div>
+    </div>
+    
+    <div id="coordDisplay">COORD: — / —</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
