@@ -244,7 +244,48 @@ const bgCanvas=document.getElementById('bgCanvas');
 const mapCanvas=document.getElementById('mapCanvas');
 const scanLines=document.getElementById('scanLines');
 
-const gl=bgCanvas.getContext('webgl');
-const ctx=mapCanvas.getContext('2d');
+const gl=bgCanvas.getContext('webgl'); || bgCanvas.getContext('experimental-webgl');
 
 
+
+const VS=`attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}`;
+const FS=`
+precision highp float;
+uniform vec2 u_res;
+uniform float u_time;
+uniform vec2 u_off;
+uniform float u_sc;
+
+
+
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+
+float hash1(float n){return fract(sin(n)*43758.5);}
+
+float noise(vec2 p){
+ vec2 i=floor(p);vec2 f=fract(p);
+ f=f*f*(3.0-2.0*f);
+ float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));
+ return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);
+}
+
+
+float fbm(vec2 p){
+ float v=0.0,a=0.5;
+ for(int i=0;i<5;i++){v+=noise(p)*a;p*=2.1;a*=0.5;}
+ return v;
+}
+
+
+void main(){
+ vec2 fc=gl_FragCoord.xy;
+ vec2 wp=vec2((fc.x-u_off.x)/u_sc,(u_res.y-fc.y-u_off.y)/u_sc);
+
+
+ vec3 col=vec3(0);
+
+
+
+ vec2 gf = fract(wp/80.0);
+ float gline = 0.0;
+ if (gf.y < 0.18 || gf.x > 1 || gf.y < 0.018 || gf.y > 0.982)gline = 0.5;
